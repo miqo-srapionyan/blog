@@ -35,4 +35,4 @@ This project is a task for interview. No dependencies , no frameworks, just nati
 - The regular user you can simply register (no need to verify email)
 
 
-NOTES: I didn't create twitter login and post edit pages because of my time, also i didn't added comments to my code (but usually i am working with comments)
+NOTES: created in two days (i work after 20:00)

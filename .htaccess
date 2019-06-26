@@ -1,0 +1,11 @@
+RewriteEngine on
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} /+[^\.]+$
+
+RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [L]
+RewriteCond %{REQUEST_URI} !^/assets
+RewriteCond %{REQUEST_URI} !^/uploads
+RewriteRule . index.php [NC,L]
+
+#FallbackResource /index.php

@@ -35,4 +35,4 @@ This project is a task for interview. No dependencies , no frameworks, just nati
 - The regular user you can simply register (no need to verify email)
 
 
-NOTES: created in two days (i work after 20:00)
+NOTES: created in two days (I worked after 20:00)

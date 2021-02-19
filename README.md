@@ -1,6 +1,6 @@
 # Getting Started
 
-This project is a task for interview. No dependencies , no frameworks, just native PHP.
+This project is a task for interview. No dependencies, no frameworks, just native PHP.
 
 ## Installation
 
@@ -12,12 +12,12 @@ This project is a task for interview. No dependencies , no frameworks, just nati
 
 - assets - the main css js and static img files
 - config - db configs, routes, and middleware shortname
-- controllers - the site main controllers
-- core - the core functionality, Rout parser, base Model,View,Controller, MIddleware, Session and helper trait for redirects
+- controllers - the project main controllers
+- core - the core functionality, Rout parser, base Model, View, Controller, Middleware, Session and helper trait for redirects
 - middlewares - the custom middlewares
 - models - the main models
 - uploads - the blog post images
-- views - the site view files
+- views - the project view files
 - .htaccess to redirect all to index.php
 - index.php the autoload register and session start
 
@@ -34,5 +34,3 @@ This project is a task for interview. No dependencies , no frameworks, just nati
 - The admin user login: admin@admin.com , password: admin
 - The regular user you can simply register (no need to verify email)
 
-
-NOTES: created in two days (I worked after 20:00)

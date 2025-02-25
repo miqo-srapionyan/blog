@@ -1,36 +1,49 @@
-# Getting Started
+# 🚀 Getting Started  
 
-This project is a task for interview. No dependencies, no frameworks, just native PHP.
+No dependencies, no frameworks—just pure native PHP.  
 
-## Installation
+## 📥 Installation  
 
-- after clone please add a virtual host,
-- create database with name blog (by deafault) or something else if you want
-- import the sql file
+1. **Clone the repository**  
+2. **Set up a virtual host** for your local development environment  
+3. **Create a database** (default: `blog`, or choose a different name)  
+4. **Import the provided SQL file**  
 
-## Application structure
+## 📂 Project Structure  
 
-- assets - the main css js and static img files
-- config - db configs, routes, and middleware shortname
-- controllers - the project main controllers
-- core - the core functionality, Rout parser, base Model, View, Controller, Middleware, Session and helper trait for redirects
-- middlewares - the custom middlewares
-- models - the main models
-- uploads - the blog post images
-- views - the project view files
-- .htaccess to redirect all to index.php
-- index.php the autoload register and session start
-
-## Application pages information
-
-- The homepage "/" blog posts with infinite scroll (20 posts)
-- The blog page "/blog/{id}"
-- Admin login page "/admin"
-- Admin dashboard "/dashboard"
+📦 Project Root  
+┣ 📂 assets`       // CSS, JS, and static image files`  
+┣ 📂 config`       // Database configurations, routes, and middleware`  
+┣ 📂 controllers `  // Main application controllers`  
+┣ 📂 core`         // Core functionalities (Router, Models, Views, Middleware, Sessions, Helpers)`  
+┣ 📂 middlewares `// Custom middleware implementations`    
+┣ 📂 models`      // Application models`  
+┣ 📂 uploads`     // Blog post images`  
+┣ 📂 views`       // Frontend view files`  
+┣ 📜 .htaccess`    // Redirects all requests to index.php`  
+┗ 📜 index.php`   // Autoloads and initializes the session`  
 
 
-## Application credentials
+## 🌍 Application Pages  
 
-- The admin user login: admin@admin.com , password: admin
-- The regular user you can simply register (no need to verify email)
+| Page               | URL                  | Description |
+|--------------------|----------------------|-------------|
+| **Homepage**       | `/`                   | Displays blog posts with infinite scrolling (20 posts per load) |
+| **Blog Post**      | `/blog/{id}`          | Displays a single blog post |
+| **Admin Login**    | `/admin`              | Admin login page |
+| **Admin Dashboard**| `/dashboard`          | Admin panel to manage posts |
+
+## 🔑 Credentials  
+
+### Admin User  
+📧 **Email:** `admin@admin.com`  
+🔑 **Password:** `admin`  
+
+### Regular User  
+You can register a new user—no email verification is required.  
+
+
+
+
+
 

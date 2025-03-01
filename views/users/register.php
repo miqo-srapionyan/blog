@@ -53,17 +53,5 @@
                 },
             }
         });
-        /*$('#register_form').on('submit', function(e){
-            if(!$('#register_form').valid()){
-                return false;
-            }
-
-
-        });*/
-
-
     })
-
-
-
 </script>

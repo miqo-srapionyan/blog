@@ -1,15 +1,14 @@
 <?php
 
-namespace core;
+declare(strict_types=1);
 
-use core\Session;
+namespace core;
 
 class View
 {
-
-    private $params;
-    private $path;
-    public $layout;
+    private array $params;
+    private string $path;
+    public string $layout;
 
     function __construct()
     {
@@ -21,7 +20,7 @@ class View
         $path = "views/$path.php";
 
         if (!file_exists($path)) {
-            die('No such view file ' . $path);
+            die('No such view file '.$path);
         }
         $this->params = $params;
         $this->path = $path;
@@ -39,11 +38,10 @@ class View
         unset($this->params);
 
         $view = $this->path;
-        if (!file_exists('views/' . $this->layout . '.php')) {
-            die('No such view layout file ' . $this->layout . '.php');
+        if (!file_exists('views/'.$this->layout.'.php')) {
+            die('No such view layout file '.$this->layout.'.php');
         }
         $session = new Session;
-        require 'views/' . $this->layout . '.php';
-
+        require 'views/'.$this->layout.'.php';
     }
 }

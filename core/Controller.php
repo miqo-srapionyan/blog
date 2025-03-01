@@ -1,18 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace core;
 
-
-use core\View;
-use core\Session;
-
+use core\traits\Helper;
 
 class Controller
 {
-    use \core\traits\Helper;
+    use Helper;
 
-    protected $view;
-    protected $post;
+    protected View $view;
+    protected array $post;
 
     function __construct()
     {
@@ -27,7 +26,6 @@ class Controller
             } else {
                 $this->post = filter_var_array($_POST, FILTER_SANITIZE_STRING);
             }
-
         }
     }
 
@@ -60,7 +58,6 @@ class Controller
                     if ($func($input) < $matches[1]) {
                         array_push($errors[$input_name], 'Email error');
                     }
-
                 }
                 if (preg_match('/^max:(\d+)$/', $type, $matches)) {
                     $func = is_array($input) ? 'count' : 'strlen';
@@ -70,6 +67,7 @@ class Controller
                 }
             }
         }
+
         Session::set('errors', $errors);
     }
 }

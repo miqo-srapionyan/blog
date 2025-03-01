@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace controllers;
 
 use core\Controller;
@@ -8,7 +10,6 @@ use core\Session;
 
 class CommentsController extends Controller
 {
-
     public function addComment()
     {
         $comment = new Comment;

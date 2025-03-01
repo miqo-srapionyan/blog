@@ -33,8 +33,6 @@
 
 
 <script>
-
-
     var lastScrollTop = 0;
     var flag = true;
     $(window).scroll(function() {

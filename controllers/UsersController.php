@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace controllers;
 
 use core\Controller;
@@ -8,10 +10,8 @@ use core\Session;
 
 class UsersController extends Controller
 {
-
     public function postRegister()
     {
-
         if (isset($this->post['submit'])) {
 
             $user = new Users();
@@ -29,21 +29,16 @@ class UsersController extends Controller
 
             $this->redirect('/');
         }
-
-
     }
 
     public function register()
     {
-
         $this->view->render('users/register');
     }
 
     public function login()
     {
-
         $this->view->render('users/login');
-
     }
 
     public function postLogin()
@@ -57,6 +52,7 @@ class UsersController extends Controller
         } else {
             $data = $user->getUserByEmail($email);
         }
+
         $data = $data[0];
 
         if (password_verify($password, $data['password'])) {
@@ -70,11 +66,7 @@ class UsersController extends Controller
 
                 $this->redirect('/dashboard');
             }
-
         }
-
-        // Redirect back
-        //$this->redirect($_SERVER['HTTP_REFERER']);
     }
 
     public function logout()

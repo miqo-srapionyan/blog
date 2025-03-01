@@ -62,11 +62,6 @@
 
         </div>
     </nav>
-
-
             <?php require $view; ?>
-
-
-
     </body>
 </html>

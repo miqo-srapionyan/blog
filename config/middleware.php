@@ -1,7 +1,13 @@
 <?php
-    return [
-        'auth' => \middlewares\Authentication::class,
-        'guest' => \middlewares\Guest::class,
-        'admin' => \middlewares\Admin::class,
-    ];
-?>
+
+declare(strict_types=1);
+
+use middlewares\Admin;
+use middlewares\Authentication;
+use middlewares\Guest;
+
+return [
+    'auth'  => Authentication::class,
+    'guest' => Guest::class,
+    'admin' => Admin::class,
+];

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace models;
 
 use core\Model;
 
 class BlogPost extends Model
 {
-    protected $table = 'posts';
+    protected string $table = 'posts';
 
     public function getPostById($id)
     {
@@ -27,10 +29,8 @@ class BlogPost extends Model
 
     public function saveBlogPost($data)
     {
-
         $sql = "INSERT INTO `{$this->table}` (title, description, status, user_id, image) VALUES (:title, :description, :status, :user_id, :image);";
-        $d = $this->row($sql, $data);
-        return;
+        $this->row($sql, $data);
     }
 
     public function getAllPosts($param = null, $limit = 3, $offset = 6)
@@ -53,24 +53,19 @@ class BlogPost extends Model
                 ;";
         }
 
-        $data = $this->row($sql, $param);
-        
-        return $data;
+        return $this->row($sql, $param);
     }
 
     public function deletePostById($id)
     {
         $p = $this->getPostById($id);
         if (isset($p[0]['image']) && $p[0]['image']) {
-
-            unlink('uploads/' . $p[0]['image']);
+            unlink('uploads/'.$p[0]['image']);
         }
 
         $sql = "DELETE FROM `{$this->table}` WHERE `id`=:id";
 
-        $data = $this->row($sql, ['id' => $id]);
-
-        return $data;
+        return $this->row($sql, ['id' => $id]);
     }
 
     public function changeStatus($id, $status)
@@ -78,9 +73,8 @@ class BlogPost extends Model
         $sql = "UPDATE `{$this->table}`
                 SET `status` = :status
                 WHERE `id`=:id;";
-        $data = $this->row($sql, ['id' => $id, 'status' => !$status]);
+        $this->row($sql, ['id' => $id, 'status' => !$status]);
     }
-
 
     public function getPostComments($post_id)
     {

@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace models;
 
 use core\Model;
 
 class Comment extends Model
 {
-    protected $table = 'comments';
+    protected string $table = 'comments';
 
     public function getPostComments($post_id)
     {
-
     }
 
     public function addComment($comment, $user_id, $post_id)

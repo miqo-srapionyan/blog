@@ -1,21 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace models;
 
 use core\Model;
 
 class Users extends Model
 {
-
-    protected $table = 'users';
+    protected string $table = 'users';
 
     public function getUserByEmailPassword($email, $password)
     {
         $sql = "SELECT * FROM `{$this->table}` WHERE `email`= :email, `password` = :password";
 
-        $data = $this->row($sql, ['email' => $email, 'password' => $password]);
-
-        return $data;
+        return $this->row($sql, ['email' => $email, 'password' => $password]);
     }
 
     public function registerUser($data)
@@ -27,13 +26,10 @@ class Users extends Model
         return $this->row($sql, $data);
     }
 
-
     public function getUserByEmail($email, $role = 'user')
     {
         $sql = "SELECT * FROM `{$this->table}` WHERE `email`= :email AND `role`= :role";
 
-        $data = $this->row($sql, ['email' => $email, 'role' => $role]);
-        //var_dump($data);
-        return $data;
+        return $this->row($sql, ['email' => $email, 'role' => $role]);
     }
 }

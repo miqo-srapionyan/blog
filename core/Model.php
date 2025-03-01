@@ -1,14 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace core;
 
 use PDO;
 
 class Model
 {
-
-    private $db;
-    protected $table;
+    private PDO $db;
+    protected string $table;
 
     function __construct()
     {

@@ -1,22 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace core;
 
 class Session
 {
     public static function get($name)
     {
-
         if (isset($_SESSION[$name])) {
             return $_SESSION[$name];
         }
+
         return '';
     }
 
     public static function set($name, $value)
     {
         $_SESSION[$name] = $value;
-
     }
 
     public function __call($name, $arguments)

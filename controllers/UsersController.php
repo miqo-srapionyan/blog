@@ -10,16 +10,20 @@ use core\Session;
 
 class UsersController extends Controller
 {
-    public function postRegister()
+    /**
+     * @return void
+     */
+    public function postRegister(): void
     {
         if (isset($this->post['submit'])) {
-
             $user = new Users();
 
             if ($user->getUserByEmail($this->post['email'])) {
                 $this->redirect('/register');
+
                 return;
             }
+
             $user->registerUser($this->post);
 
             $data = $user->getUserByEmail($this->post['email']);

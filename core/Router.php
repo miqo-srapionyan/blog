@@ -12,6 +12,10 @@ use function count;
 use function class_exists;
 use function method_exists;
 
+/**
+ * Router class handles request routing by matching URLs to controllers and actions.
+ * It supports dynamic route parameters and middleware execution.
+ */
 class Router
 {
     /**
@@ -38,6 +42,7 @@ class Router
         $this->currentUrl = trim($_SERVER['REQUEST_URI'], '/');
 
         foreach ($this->routes as $route => $params) {
+            // This regex validates a route pattern:
             if (!preg_match('/^(\/[a-zA-Z0-9_]*)*(\/\{[a-zA-Z0-9_]+\??\})*$/', $route)) {
                 die('Wrong route name - '.$route);
             }
@@ -70,6 +75,7 @@ class Router
 
             // Match URL segments with route parameters
             for ($i = 0; $i < count($urlUris); $i++) {
+                // Validates if the string is a dynamic route parameter in `{}` format,
                 if (!preg_match('/^\{([a-zA-Z0-9_]+)\??\}$/', $routeUris[$i], $matches)) {
                     if ($routeUris[$i] != $urlUris[$i]) {
                         $urlCheck = false;
@@ -85,14 +91,14 @@ class Router
                 if (!isset($params['controller'])) {
                     die('Please add controller');
                 }
-                
+
                 $path = "controllers\\".$params['controller'];
 
                 if (class_exists($path)) {
                     if (!isset($params['action'])) {
                         die('Please add action');
                     }
-                    
+
                     if (method_exists($path, $params['action'])) {
                         $controller = new $path;
                         $action = $params['action'];
@@ -126,7 +132,7 @@ class Router
      * Executes middleware functions associated with a specific route.
      *
      * @param string $middlewares The middleware(s) to be executed, separated by '|'.
-     * @param string $route The route for which the middleware is applied.
+     * @param string $route       The route for which the middleware is applied.
      *
      * @return void
      */

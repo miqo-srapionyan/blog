@@ -30,26 +30,26 @@
 </div>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#register_form').validate({
-            rules:{
-                first_name:{
+            rules: {
+                first_name: {
                     required: true,
                     maxlength: 255,
                 },
-                last_name:{
+                last_name: {
                     required: true,
                     maxlength: 255,
                 },
-                email:{
+                email: {
                     required: true,
                     maxlength: 255,
-                    email:true
+                    email: true
                 },
-                password:{
+                password: {
                     required: true,
-                    minlength:6,
-                    maxlength:10
+                    minlength: 6,
+                    maxlength: 10
                 },
             }
         });

@@ -10,7 +10,10 @@ use core\Session;
 
 class CommentsController extends Controller
 {
-    public function addComment()
+    /**
+     * @return void
+     */
+    public function addComment(): void
     {
         $comment = new Comment;
         $comment->addComment($this->post['content'], Session::get('user')['id'], $this->post['post_id']);

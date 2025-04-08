@@ -10,11 +10,14 @@ class Comment extends Model
 {
     protected string $table = 'comments';
 
-    public function getPostComments($post_id)
-    {
-    }
-
-    public function addComment($comment, $user_id, $post_id)
+    /**
+     * @param string $comment
+     * @param int    $user_id
+     * @param int    $post_id
+     *
+     * @return array
+     */
+    public function addComment(string $comment, int $user_id, int $post_id): array
     {
         $sql = "INSERT INTO comments (content, user_id, post_id) VALUES (:content, :user_id, :post_id);";
 

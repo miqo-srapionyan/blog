@@ -7,9 +7,18 @@ namespace controllers;
 use core\Controller;
 use models\BlogPost;
 
+use function json_encode;
+use function strtotime;
+use function substr;
+use function date;
+use function strip_tags;
+
 class HomeController extends Controller
 {
-    public function index()
+    /**
+     * @return void
+     */
+    public function index(): void
     {
         $blog = new BlogPost;
         $data = $blog->getAllPosts(['status' => 1]);
@@ -17,7 +26,12 @@ class HomeController extends Controller
         $this->view->render('home/index', ['data' => $data]);
     }
 
-    public function blog($param)
+    /**
+     * @param array $param
+     *
+     * @return void
+     */
+    public function blog(array $param): void
     {
         $blog = new BlogPost;
         $data = $blog->getPostById($param['id']);
@@ -26,7 +40,10 @@ class HomeController extends Controller
         $this->view->render('home/blog', ['data' => $data, 'comments' => $comments]);
     }
 
-    public function infiniteScroll()
+    /**
+     * @return void
+     */
+    public function infiniteScroll(): void
     {
         $blog = new BlogPost;
         $limit = $this->post['limit'];

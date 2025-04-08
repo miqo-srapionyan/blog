@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace middlewares;
 
-use core\MiddlewareAbstract;
+use core\BaseMiddleware;
 use core\Session;
-use core\traits\Helper;
+use core\traits\Redirect;
 
-class Authentication extends MiddlewareAbstract
+class Authentication extends BaseMiddleware
 {
-    use Helper;
+    use Redirect;
 
-    public function run($url)
+    public function run(string $url): void
     {
-        if (Session::get('user') === null || empty(Session::get('user'))) {
+        if (!Session::has('user')) {
             $this->redirect('/login');
         }
     }

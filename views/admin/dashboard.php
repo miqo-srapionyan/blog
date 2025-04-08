@@ -1,6 +1,5 @@
 <script src="https://cdn.tiny.cloud/1/jmzu46r7lgkehxlsoqbxl2z1ioxfcyu2piw5ekkbfsike4z7/tinymce/5/tinymce.min.js"></script>
 
-
 <div class="container">
     <h1 class="text-center mb-20">Admin Posts</h1>
     <div class="row">
@@ -28,69 +27,83 @@
             </form>
             <table id="data-table" class="table table-striped table-bordered" style="width:100%">
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Image</th>
-                        <th>Status</th>
-                        <th>Comments count</th>
-                        <th>Action</th>
-                    </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Status</th>
+                    <th>Comments count</th>
+                    <th>Action</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <?php  /*echo "<pre>".print_r($data, true)."</pre>";die;*/if(isset($data)  && $data){?>
-                    <?php foreach($data as $post){?>
+                <?php
+                if (isset($data) && $data) { ?>
+                    <?php
+                    foreach ($data as $post) { ?>
                         <tr>
-                            <td><?php echo $post['id'];?></td>
-                            <td><?php echo $post['title'];?></td>
-                            <td><?php echo substr(strip_tags($post['description']),0, 100)."...";?></td>
-                            <td><?php echo ($post['image']) ? "<img src='/uploads/".$post['image']."' style='width:100px;height:100px;'>" : ''?></td>
+                            <td><?php
+                                echo $post['id']; ?></td>
+                            <td><?php
+                                echo $post['title']; ?></td>
+                            <td><?php
+                                echo substr(strip_tags($post['description']), 0, 100)."..."; ?></td>
+                            <td><?php
+                                echo ($post['image']) ? "<img src='/uploads/".$post['image']."' style='width:100px;height:100px;'>" : '' ?></td>
                             <td>
-                                <span><?php echo ($post['status']) ? "On production" : 'On moderation';?></span>
-                                <button data-id="<?php echo $post['id'];?>" data-status="<?php echo $post['status'];?>" class="btn btn-primary change-status">change</button>
+                                <span><?php
+                                    echo ($post['status']) ? "On production" : 'On moderation'; ?></span>
+                                <button data-id="<?php
+                                echo $post['id']; ?>" data-status="<?php
+                                echo $post['status']; ?>" class="btn btn-primary change-status">change
+                                </button>
                             </td>
-                            <td><?php echo $post['comment_count'];?></td>
-                            <td><a href="/delete_post/<?php echo $post['id'];?>">Delete</a></td>
+                            <td><?php
+                                echo $post['comment_count']; ?></td>
+                            <td><a href="/delete_post/<?php
+                                echo $post['id']; ?>">Delete</a></td>
                         </tr>
-                    <?php }}?>
+                        <?php
+                    }
+                } ?>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-<script>tinymce.init({selector:'textarea',});</script>
+<script>tinymce.init({ selector: 'textarea', });</script>
 <script>
     $('#blog-post-form').validate({
-        rules:{
-            title:{
+        rules: {
+            title: {
                 required: true,
                 maxlength: 20,
             },
-            description:{
+            description: {
                 maxlength: 800,
             },
-            image:{
+            image: {
                 extension: "jpg|jpeg|gif|png"
             }
         }
     });
-    $(document).on('click','.change-status',function(e){
+    $(document).on('click', '.change-status', function (e) {
         e.preventDefault();
         var id = $(this).attr('data-id');
         var status = $(this).attr('data-status');
         var $this = $(this);
         $.ajax({
-            url:'/change_status',
-            type:'post',
-            data:{id:id,status:status},
-            success:function(){
+            url: '/change_status',
+            type: 'post',
+            data: { id: id, status: status },
+            success: function () {
 
-                if(parseInt(status) == 1){
-                    $this.attr('data-status','0')
+                if (parseInt(status) === 1) {
+                    $this.attr('data-status', '0')
                     $this.parent().find('span').text('On moderation');
-                }else{
-                    $this.attr('data-status','1')
+                } else {
+                    $this.attr('data-status', '1')
                     $this.parent().find('span').text('On production');
                 }
             }

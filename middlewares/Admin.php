@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace middlewares;
 
-use core\MiddlewareAbstract;
+use core\BaseMiddleware;
 use core\Session;
-use core\traits\Helper;
+use core\traits\Redirect;
 
-class Admin extends MiddlewareAbstract
+class Admin extends BaseMiddleware
 {
-    use Helper;
+    use Redirect;
 
-    public function run($url)
+    public function run(string $url): void
     {
-        if (Session::get('user')['role'] !== 'admin') {
+        if (Session::has('users') && Session::get('user')['role'] !== 'admin') {
             $this->redirect('/');
         }
     }

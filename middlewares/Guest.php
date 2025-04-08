@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace middlewares;
 
-use core\MiddlewareAbstract;
+use core\BaseMiddleware;
 use core\Session;
-use core\traits\Helper;
+use core\traits\Redirect;
 
-class Guest extends MiddlewareAbstract
+class Guest extends BaseMiddleware
 {
-    use Helper;
+    use Redirect;
 
-    public function run($url)
+    public function run(string $url): void
     {
-        if (!empty(Session::get('user')) && Session::get('user') !== null) {
+        if (Session::has('user')) {
             $this->redirect('/');
         }
     }

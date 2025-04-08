@@ -6,7 +6,6 @@
 
         <!-- Icon -->
         <div class="fadeIn first">
-
         </div>
 
         <!-- Login Form -->
@@ -20,23 +19,22 @@
         <div id="formFooter">
             <a class="underlineHover" href="/register">Register</a>
         </div>
-
     </div>
 </div>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#login_form').validate({
-            rules:{
-                email:{
+            rules: {
+                email: {
                     required: true,
                     maxlength: 255,
-                    email:true
+                    email: true
                 },
-                password:{
+                password: {
                     required: true,
-                    minlength:6,
-                    maxlength:10
+                    minlength: 6,
+                    maxlength: 10
                 },
             }
         });

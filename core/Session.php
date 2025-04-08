@@ -4,39 +4,45 @@ declare(strict_types=1);
 
 namespace core;
 
+/**
+ * Session Management Class
+ *
+ * This class provides utility methods for handling session data, including
+ * retrieving, setting, and checking the existence of session variables.
+ */
 class Session
 {
-    public static function get($name)
+    /**
+     * Retrieves a session value by key.
+     *
+     * @param string $key The session key.
+     * @return mixed The session value or an empty string if not set.
+     */
+    public static function get(string $key): mixed
     {
-        if (isset($_SESSION[$name])) {
-            return $_SESSION[$name];
-        }
-
-        return '';
+        return $_SESSION[$key] ?? '';
     }
 
-    public static function set($name, $value)
+    /**
+     * Sets a session value.
+     *
+     * @param string $key The session key.
+     * @param string|null $value The value to store in the session.
+     * @return void
+     */
+    public static function set(string $key, ?string $value): void
     {
-        $_SESSION[$name] = $value;
+        $_SESSION[$key] = $value;
     }
 
-    public function __call($name, $arguments)
+    /**
+     * Checks if a session key exists and is not empty.
+     *
+     * @param string $key The session key to check.
+     * @return bool True if the session key exists and has a value, false otherwise.
+     */
+    public static function has(string $key): bool
     {
-        if ($name === 'get') {
-            call_user_func(array('Session', 'get'));
-        }
-        if ($name === 'set') {
-            call_user_func(array('Session', 'set'), $arguments);
-        }
-    }
-
-    public static function __callStatic($name, $arguments)
-    {
-        if ($name === 'get') {
-            call_user_func(array('Session', 'get'));
-        }
-        if ($name === 'set') {
-            call_user_func(array('Session', 'set'), $arguments);
-        }
+        return !empty($_SESSION[$key]);
     }
 }

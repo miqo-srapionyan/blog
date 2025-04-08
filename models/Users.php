@@ -10,14 +10,12 @@ class Users extends Model
 {
     protected string $table = 'users';
 
-    public function getUserByEmailPassword($email, $password)
-    {
-        $sql = "SELECT * FROM `{$this->table}` WHERE `email`= :email, `password` = :password";
-
-        return $this->row($sql, ['email' => $email, 'password' => $password]);
-    }
-
-    public function registerUser($data)
+    /**
+     * @param array $data
+     *
+     * @return array
+     */
+    public function registerUser(array $data): array
     {
         $sql = "INSERT INTO `{$this->table}` (first_name, last_name, email, password) VALUES (:first_name, :last_name, :email, :password);";
         $data['password'] = $this->bcrypt($data['password']);
@@ -26,7 +24,13 @@ class Users extends Model
         return $this->row($sql, $data);
     }
 
-    public function getUserByEmail($email, $role = 'user')
+    /**
+     * @param string $email
+     * @param string $role
+     *
+     * @return array
+     */
+    public function getUserByEmail(string $email, string $role = 'user'): array
     {
         $sql = "SELECT * FROM `{$this->table}` WHERE `email`= :email AND `role`= :role";
 

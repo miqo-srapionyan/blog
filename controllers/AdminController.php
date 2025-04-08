@@ -66,10 +66,10 @@ class AdminController extends Controller
         $this->redirect('/dashboard');
     }
 
-    public function deletePost($param): void
+    public function deletePost(array $param): void
     {
         $blog = new BlogPost;
-        $blog->deletePostById($param['id']);
+        $blog->deletePostById((int)$param['id']);
         $this->redirect('/dashboard');
     }
 
